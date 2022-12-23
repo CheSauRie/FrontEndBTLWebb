@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/admin.css" />
+</head>
+
+<body>
+    <!-- header -->
+    <header style="display: flex; justify-content: space-between;">
+        <p style="color: orangered;">BigCorp</p>
+        <button>logout</button>
+    </header>
+
+    <!-- nav bar -->
+    <div class="header-nav">
+        <div class="d-flex align-items-start">
+            <!-- div này là cái danh sách chức năng -->
+            <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <button class="nav-link active" id="v-pills-product-tab" data-bs-toggle="pill"
+                    data-bs-target="#v-pills-product" type="button" role="tab" aria-controls="v-pills-product"
+                    aria-selected="true">Sản phẩm</button>
+                <button class="nav-link" id="v-pills-account-tab" data-bs-toggle="pill"
+                    data-bs-target="#v-pills-account" type="button" role="tab" aria-controls="v-pills-account"
+                    aria-selected="false">Quản lí tài khoản</button>
+                <button class="nav-link" id="v-pills-product-management-tab" data-bs-toggle="pill"
+                    data-bs-target="#v-pills-product-management" type="button" role="tab"
+                    aria-controls="v-pills-product-management" aria-selected="false">Quản lí sản phẩm</button>
+                <button class="nav-link" id="v-pills-statistic-tab" data-bs-toggle="pill"
+                    data-bs-target="#v-pills-statistic" type="button" role="tab" aria-controls="v-pills-statistic"
+                    aria-selected="false">Thống kê</button>
+            </div>
+
+            <!-- screen cho div sanr pham -->
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-product" role="tabpanel"
+                    aria-labelledby="v-pills-product-tab" tabindex="0">
+
+                    <!-- button thêm sản phẩm có modal -->
+                    <div class="add_product">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" style="margin-bottom: 2px;"
+                            data-bs-target="#add_product">
+                            Thêm sản phẩm
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="add_product" tabindex="-1" aria-labelledby="add_productLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="add_productLabel">Thêm sản phẩm</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form enctype="multipart/form-data">
+                                            <label for="name_product" class="form-label">Tên sản phẩm</label>
+                                            <input type="text" id="name_product" class="form-control" name="name">
+                                            <label for="productLine_name" class="form-label">Dòng sản phẩm</label>
+                                            <input type="text" id="productLine_name" class="form-control"
+                                                name="productLine_name">
+                                            <label for="code_product" class="form-label">Mã sản phẩm</label>
+                                            <input type="text" id="code_product" class="form-control" name="code">
+                                            <label for="description_product" class="form-label">Mô tả</label>
+                                            <input type="text" id="description_product" class="form-control"
+                                                name="description">
+                                            <label for="price_product" class="form-label">Giá</label>
+                                            <input type="text" id="price_product" class="form-control" name="price">
+                                            <label for="image_product" class="form-label">Hình ảnh</label>
+                                            <input type="file" id="image_product" class="form-control" name="product">
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Đóng</button>
+                                        <button type="button" class="btn btn-primary">Lưu</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="update_product">
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="update_product" tabindex="-1" aria-labelledby="update_productLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="update_productLabel">Thay đổi trạng thái </h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form enctype="multipart/form-data">
+                                            <label for="status_product" class="form-label">Trạng thái</label>
+                                            <input type="text" id="status_product" class="form-control" name="status">
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Đóng</button>
+                                        <button type="button" class="btn btn-primary">Lưu</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- div hiển thị danh sách sản phẩm -->
+                    <div class="container text-center">
+                        <div class="row row-cols-4">
+                            <div class="col">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="./image/1669968175888_rog.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">ROG STRIX 1</h5>
+                                        <label>Tình trạng</label>
+                                        <p class="card-text">Mới sản xuất</p>
+                                        <button><i class="fa-solid fa-trash"></i></button>
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#update_product"><i
+                                                class="fa-solid fa-wrench"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="./image/1669968175888_rog.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">ROG STRIX 2</h5>
+                                        <label>Tình trạng</label>
+                                        <p class="card-text">Tốt</p>
+                                        <button><i class="fa-solid fa-trash"></i></button>
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#update_product"><i
+                                                class="fa-solid fa-wrench"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="./image/1669968175888_rog.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">ROG STRIX 3</h5>
+                                        <label>Tình trạng</label>
+                                        <p class="card-text">Cần triệu hồi</p>
+                                        <button><i class="fa-solid fa-trash"></i></button>
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#update_product"><i
+                                                class="fa-solid fa-wrench"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="./image/1669968175888_rog.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">ROG STRIX 4</h5>
+                                        <label>Tình trạng</label>
+                                        <p class="card-text">Cần triệu hồi</p>
+                                        <button><i class="fa-solid fa-trash"></i></button>
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#update_product"><i
+                                                class="fa-solid fa-wrench"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="v-pills-account" role="tabpanel" aria-labelledby="v-pills-account-tab"
+                    tabindex="0">
+
+
+                    <!-- button và modal thêm người dùng -->
+                    <div class="add_user">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" style="margin-bottom: 2px;"
+                            data-bs-target="#add_user">
+                            Thêm User
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="add_user" tabindex="-1" aria-labelledby="add_userLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="add_userLabel">Thêm sản phẩm</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form enctype="multipart/form-data">
+                                            <label for="name_product" class="form-label">Tên sản phẩm</label>
+                                            <input type="text" id="name_product" class="form-control" name="name">
+                                            <label for="productLine_name" class="form-label">Dòng sản phẩm</label>
+                                            <input type="text" id="productLine_name" class="form-control"
+                                                name="productLine_name">
+                                            <label for="code_product" class="form-label">Mã sản phẩm</label>
+                                            <input type="text" id="code_product" class="form-control" name="code">
+                                            <label for="description_product" class="form-label">Mô tả</label>
+                                            <input type="text" id="description_product" class="form-control"
+                                                name="description">
+                                            <label for="price_product" class="form-label">Giá</label>
+                                            <input type="text" id="price_product" class="form-control" name="price">
+                                            <label for="image_product" class="form-label">Hình ảnh</label>
+                                            <input type="file" id="image_product" class="form-control" name="product">
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Đóng</button>
+                                        <button type="button" class="btn btn-primary">Lưu</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Bảng danh sách user -->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Mã</th>
+                                <th scope="col">Tài khoản</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Mật khẩu</th>
+                                <th scope="col">Vai trò</th>
+                                <th scope="col">Số điện thoại</th>
+                                <th scope="col">Địa chỉ</th>
+                                <th scope="col">Tùy chỉnh</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>DH01</td>
+                                <td>Trịnh Hồng Quân</td>
+                                <td>hongquanvd1@gmail.com</td>
+                                <td>hello1</td>
+                                <td>Ban điều hành</td>
+                                <td>0327804566</td>
+                                <td>Quảng Ninh</td>
+                                <td>
+                                    <button><i class="fa-solid fa-trash"></i></button>
+                                    <button><i class="fa-solid fa-wrench"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>DH01</td>
+                                <td>Trịnh Hồng Quân</td>
+                                <td>hongquanvd1@gmail.com</td>
+                                <td>hello1</td>
+                                <td>Ban điều hành</td>
+                                <td>0327804566</td>
+                                <td>Quảng Ninh</td>
+                                <td>
+                                    <button><i class="fa-solid fa-trash"></i></button>
+                                    <button><i class="fa-solid fa-wrench"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>DH01</td>
+                                <td>Trịnh Hồng Quân</td>
+                                <td>hongquanvd1@gmail.com</td>
+                                <td>hello1</td>
+                                <td>Ban điều hành</td>
+                                <td>0327804566</td>
+                                <td>Quảng Ninh</td>
+                                <td>
+                                    <button><i class="fa-solid fa-trash"></i></button>
+                                    <button><i class="fa-solid fa-wrench"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">4</th>
+                                <td>DH01</td>
+                                <td>Trịnh Hồng Quân</td>
+                                <td>hongquanvd1@gmail.com</td>
+                                <td>hello1</td>
+                                <td>Ban điều hành</td>
+                                <td>0327804566</td>
+                                <td>Quảng Ninh</td>
+                                <td>
+                                    <button><i class="fa-solid fa-trash"></i></button>
+                                    <button><i class="fa-solid fa-wrench"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+
+                <div class="tab-pane fade" id="v-pills-product-management" role="tabpanel"
+                    aria-labelledby="v-pills-product-management-tab" tabindex="0">
+
+                    <!-- Bảng quản lí sản phẩm -->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Tên sản phẩm</th>
+                                <th scope="col">Mã</th>
+                                <th scope="col">Cơ sở sản xuất</th>
+                                <th scope="col">Đại lí phân phối</th>
+                                <th scope="col">Trung tâm bảo hành</th>
+                                <th scope="col">Tình trạng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>ROG Strix 512</td>
+                                <td>G01</td>
+                                <td>Trịnh Hồng Quân</td>
+                                <td>Hà Hoàng Phúc</td>
+                                <td>Trịnh Văn Tráng</td>
+                                <td>Tốt</td>
+
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>ROG Strix 512</td>
+                                <td>G01</td>
+                                <td>Trịnh Hồng Quân</td>
+                                <td>Hà Hoàng Phúc</td>
+                                <td>Trịnh Văn Tráng</td>
+                                <td>Tốt</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>ROG Strix 512</td>
+                                <td>G01</td>
+                                <td>Trịnh Hồng Quân</td>
+                                <td>Hà Hoàng Phúc</td>
+                                <td>Trịnh Văn Tráng</td>
+                                <td>Tốt</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">4</th>
+                                <td>ROG Strix 512</td>
+                                <td>G01</td>
+                                <td>Trịnh Hồng Quân</td>
+                                <td>Hà Hoàng Phúc</td>
+                                <td>Trịnh Văn Tráng</td>
+                                <td>Tốt</td>
+                            </tr>
+                            <p>Phần này ông làm sắp xếp bảng giống như trong cái bài tập ở trên lớp ấy. tôi nghĩ sắp xếp
+                                thế cũng có tí gọi là thống kê r</p>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- <div class="tab-pane fade" id="v-pills-statistic" role="tabpanel"
+                    aria-labelledby="v-pills-statistic-tab" tabindex="0">...</div> -->
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
