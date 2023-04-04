@@ -12,9 +12,9 @@ form.addEventListener('submit', (e) => {
             password
         })
         .then(function (response) {
-            role = response.data.type
+            role = response.data.role
             if (role == "Ban điều hành") {
-                window.location.assign("../admin/admin.html");
+                window.location.assign("../admin.html");
                 alert("Chào ban quản lý")
             }
             console.log(response.data);

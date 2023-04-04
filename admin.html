@@ -10,7 +10,11 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/admin.css" />
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"
+        integrity="sha512-QTnb9BQkG4fBYIt9JGvYmxPpd6TBeKp6lsUrtiVQsrJ9sb33Bn9s0wMQO9qVBFbPX3xHRAsBHvXlcsrnJjExjg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="./public/css/admin.css" />
 </head>
 
 <body>
@@ -45,15 +49,15 @@
                     aria-labelledby="v-pills-product-tab" tabindex="0">
 
                     <!-- button thêm sản phẩm có modal -->
-                    <div class="add_product">
+                    <div class="add_product_detail">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" style="margin-bottom: 2px;"
-                            data-bs-target="#add_product">
+                            data-bs-target="#add_product_detail">
                             Thêm sản phẩm
                         </button>
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="add_product" tabindex="-1" aria-labelledby="add_productLabel"
+                        <!-- Modal Thêm sản phẩm-->
+                        <div class="modal fade" id="add_product_detail" tabindex="-1" aria-labelledby="add_productLabel"
                             aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -63,7 +67,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form enctype="multipart/form-data">
+                                        <form id="form-add-product">
                                             <label for="name_product" class="form-label">Tên sản phẩm</label>
                                             <input type="text" id="name_product" class="form-control" name="name">
                                             <label for="productLine_name" class="form-label">Dòng sản phẩm</label>
@@ -76,23 +80,23 @@
                                                 name="description">
                                             <label for="price_product" class="form-label">Giá</label>
                                             <input type="text" id="price_product" class="form-control" name="price">
-                                            <label for="image_product" class="form-label">Hình ảnh</label>
-                                            <input type="file" id="image_product" class="form-control" name="product">
+
+                                            <button type="submit" class="btn btn-primary">Lưu</button>
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Đóng</button>
-                                        <button type="button" class="btn btn-primary">Lưu</button>
+                                        <!-- <button type="submit" class="btn btn-primary" id="add_product">Lưu</button> -->
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+
+                    <!-- chức năng update product -->
                     <div class="update_product">
 
-                        <!-- Modal -->
+                        <!-- Modal update product -->
                         <div class="modal fade" id="update_product" tabindex="-1" aria-labelledby="update_productLabel"
                             aria-hidden="true">
                             <div class="modal-dialog">
@@ -103,15 +107,44 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form enctype="multipart/form-data">
+                                        <form id="update-product" enctype="multipart/form-data">
                                             <label for="status_product" class="form-label">Trạng thái</label>
                                             <input type="text" id="status_product" class="form-control" name="status">
+                                            <button type="button" class="btn btn-primary">Lưu</button>
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Đóng</button>
-                                        <button type="button" class="btn btn-primary">Lưu</button>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- upload ảnh cho product -->
+                    <div class="upload_product">
+
+                        <!-- Modal upload product -->
+                        <div class="modal fade" id="upload_product" tabindex="-1" aria-labelledby="upload_productLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="upload_productLabel">Thay đổi Hình ảnh </h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="upload-product" enctype="multipart/form-data">
+                                            <label for="status_product" class="form-label">Hình ảnh</label>
+                                            <input type="file" name="thumbnail" id="thumbnail" class="form-control"
+                                                accept="image/*" />
+                                            <input type="submit" />
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+
                                     </div>
                                 </div>
                             </div>
@@ -120,60 +153,7 @@
 
                     <!-- div hiển thị danh sách sản phẩm -->
                     <div class="container text-center">
-                        <div class="row row-cols-4">
-                            <div class="col">
-                                <div class="card" style="width: 18rem;">
-                                    <img src="./image/1669968175888_rog.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">ROG STRIX 1</h5>
-                                        <label>Tình trạng</label>
-                                        <p class="card-text">Mới sản xuất</p>
-                                        <button><i class="fa-solid fa-trash"></i></button>
-                                        <button type="button" data-bs-toggle="modal" data-bs-target="#update_product"><i
-                                                class="fa-solid fa-wrench"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card" style="width: 18rem;">
-                                    <img src="./image/1669968175888_rog.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">ROG STRIX 2</h5>
-                                        <label>Tình trạng</label>
-                                        <p class="card-text">Tốt</p>
-                                        <button><i class="fa-solid fa-trash"></i></button>
-                                        <button type="button" data-bs-toggle="modal" data-bs-target="#update_product"><i
-                                                class="fa-solid fa-wrench"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card" style="width: 18rem;">
-                                    <img src="./image/1669968175888_rog.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">ROG STRIX 3</h5>
-                                        <label>Tình trạng</label>
-                                        <p class="card-text">Cần triệu hồi</p>
-                                        <button><i class="fa-solid fa-trash"></i></button>
-                                        <button type="button" data-bs-toggle="modal" data-bs-target="#update_product"><i
-                                                class="fa-solid fa-wrench"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card" style="width: 18rem;">
-                                    <img src="./image/1669968175888_rog.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">ROG STRIX 4</h5>
-                                        <label>Tình trạng</label>
-                                        <p class="card-text">Cần triệu hồi</p>
-                                        <button><i class="fa-solid fa-trash"></i></button>
-                                        <button type="button" data-bs-toggle="modal" data-bs-target="#update_product"><i
-                                                class="fa-solid fa-wrench"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div id="item_product" class="row row-cols-4"></div>
                     </div>
                 </div>
 
@@ -185,7 +165,7 @@
                     <div class="add_user">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" style="margin-bottom: 2px;"
-                            data-bs-target="#add_user">
+                            data-bs-target="#add_user" id="btnModalUser">
                             Thêm User
                         </button>
 
@@ -200,32 +180,43 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form enctype="multipart/form-data">
-                                            <label for="name_product" class="form-label">Tên sản phẩm</label>
-                                            <input type="text" id="name_product" class="form-control" name="name">
-                                            <label for="productLine_name" class="form-label">Dòng sản phẩm</label>
-                                            <input type="text" id="productLine_name" class="form-control"
-                                                name="productLine_name">
-                                            <label for="code_product" class="form-label">Mã sản phẩm</label>
-                                            <input type="text" id="code_product" class="form-control" name="code">
-                                            <label for="description_product" class="form-label">Mô tả</label>
-                                            <input type="text" id="description_product" class="form-control"
-                                                name="description">
-                                            <label for="price_product" class="form-label">Giá</label>
-                                            <input type="text" id="price_product" class="form-control" name="price">
-                                            <label for="image_product" class="form-label">Hình ảnh</label>
-                                            <input type="file" id="image_product" class="form-control" name="product">
+                                        <form id="form-add-user" enctype="multipart/form-data">
+                                            <label for="code" class="form-label">Mã </label>
+                                            <input type="text" id="code" class="form-control" name="code">
+
+                                            <label for="username" class="form-label">Tài khoản</label>
+                                            <input type="text" id="username" class="form-control" name="user">
+
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="text" id="email" class="form-control" name="email">
+
+                                            <label for="password" class="form-label">Mật khẩu</label>
+                                            <input type="text" id="password" class="form-control" name="password">
+
+                                            <label for="role" class="form-label">Vai trò</label>
+                                            <input type="text" id="role" class="form-control" name="role">
+
+                                            <label for="phone" class="form-label">Số điện thoại</label>
+                                            <input type="text" id="phone" class="form-control" name="phone">
+                                            <label for="address" class="form-label">Địa chỉ</label>
+                                            <input type="text" id="address" class="form-control" name="address">
+
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Đóng</button>
-                                        <button type="button" class="btn btn-primary">Lưu</button>
+                                        <button id="addUser" type="button" class="btn btn-outline-warning">
+                                            Thêm
+                                        </button>
+                                        <button id="updateUser" type="button" class="btn btn-outline-warning">
+                                            Cập Nhật
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
                     <!-- Bảng danh sách user -->
                     <table class="table">
                         <thead>
@@ -241,67 +232,15 @@
                                 <th scope="col">Tùy chỉnh</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>DH01</td>
-                                <td>Trịnh Hồng Quân</td>
-                                <td>hongquanvd1@gmail.com</td>
-                                <td>hello1</td>
-                                <td>Ban điều hành</td>
-                                <td>0327804566</td>
-                                <td>Quảng Ninh</td>
-                                <td>
-                                    <button><i class="fa-solid fa-trash"></i></button>
-                                    <button><i class="fa-solid fa-wrench"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>DH01</td>
-                                <td>Trịnh Hồng Quân</td>
-                                <td>hongquanvd1@gmail.com</td>
-                                <td>hello1</td>
-                                <td>Ban điều hành</td>
-                                <td>0327804566</td>
-                                <td>Quảng Ninh</td>
-                                <td>
-                                    <button><i class="fa-solid fa-trash"></i></button>
-                                    <button><i class="fa-solid fa-wrench"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>DH01</td>
-                                <td>Trịnh Hồng Quân</td>
-                                <td>hongquanvd1@gmail.com</td>
-                                <td>hello1</td>
-                                <td>Ban điều hành</td>
-                                <td>0327804566</td>
-                                <td>Quảng Ninh</td>
-                                <td>
-                                    <button><i class="fa-solid fa-trash"></i></button>
-                                    <button><i class="fa-solid fa-wrench"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>DH01</td>
-                                <td>Trịnh Hồng Quân</td>
-                                <td>hongquanvd1@gmail.com</td>
-                                <td>hello1</td>
-                                <td>Ban điều hành</td>
-                                <td>0327804566</td>
-                                <td>Quảng Ninh</td>
-                                <td>
-                                    <button><i class="fa-solid fa-trash"></i></button>
-                                    <button><i class="fa-solid fa-wrench"></i></button>
-                                </td>
-                            </tr>
+                        <tbody id="tbody-user">
+
                         </tbody>
                     </table>
 
                 </div>
+
+
+
 
 
 
@@ -375,6 +314,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+    <!-- <script src="./public/js/api/product.js"></script> -->
+    <script src="./public/js/index/admin.js"></script>
+    <script src="./public/js/index/user.js"></script>
 </body>
 
 </html>
